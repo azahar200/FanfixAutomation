@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Fanfix Test Suite">
+    <test name="New Post Test">
+        <classes>
+            <class name="tests.NewPostTest"/>
+        </classes>
+    </test>
+</suite>
