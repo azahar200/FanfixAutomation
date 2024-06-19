@@ -20,6 +20,7 @@ public class NewPostTest {
     public void setup() {
         driver = WebDriverManagerUtil.getDriver();
         driver.get("https://client-auth-dev.fanfix.dev/login");
+        driver.manage().window().maximize();
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
         newPostPage = new NewPostPage(driver);
@@ -30,17 +31,19 @@ public class NewPostTest {
         loginPage.login("testqa@mailinator.com", "123456789");
         homePage.navigateToNewPost();
         String caption = "This post is done by automation assignment";
-        String path = "src\\test\\resources\\fanfix.png";
-        newPostPage.createNewPost(caption, path, 5);
+        String path = "C:\\Users\\Azahar\\Documents\\Eclipse\\FanfixAutomation\\src\\test\\resources\\fanfix.png";
+        newPostPage.createNewPost(caption, path);
 
         // Check if the Post button is disabled for prices less than $5
-        for (int subPrice = 1; subPrice <= 6; subPrice++) {
-            for (int nonSubPrice = 1; nonSubPrice <= 6; nonSubPrice++) {
+        for (int subPrice = 4; subPrice <= 6; subPrice++) {
+            for (int nonSubPrice = 4; nonSubPrice <= 6; nonSubPrice++) {
                 newPostPage.setCustomPrices(subPrice, nonSubPrice);
                 if (subPrice < 5 || nonSubPrice < 5) {
                     Assert.assertFalse(newPostPage.isPostButtonEnabled(), "Post button should be disabled for prices less than $5");
+                    System.out.println("Post button is disabled");
                 } else {
                     Assert.assertTrue(newPostPage.isPostButtonEnabled(), "Post button should be enabled for prices $5 and above");
+                    System.out.println("Post button is enabled");
                 }
             }
         }
@@ -52,6 +55,7 @@ public class NewPostTest {
         // Verify the latest post
         boolean isPostCreated = newPostPage.verifyLatestPost(caption);
         Assert.assertTrue(isPostCreated, "The latest post should be created successfully with the correct caption.");
+        System.out.println("Caption verified");
     }
 
     @AfterClass

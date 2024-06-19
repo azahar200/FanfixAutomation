@@ -27,5 +27,6 @@ public class LoginPage extends BasePage {
         System.out.println("passwword entered");
         loginButton.click();
         System.out.println("submit button clicked");
+        sleep(5000);
     }
 }

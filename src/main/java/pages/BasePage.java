@@ -23,4 +23,12 @@ public class BasePage {
 		wait.until(ExpectedConditions.visibilityOf(findBy));
 	}
 
+	public void sleep(int m){
+        try {
+            Thread.sleep(m);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
