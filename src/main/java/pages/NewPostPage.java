@@ -128,6 +128,7 @@ public class NewPostPage extends BasePage {
         waitForElementToAppear(latestPost);
         latestPost.click();
         System.out.println("latest post button clicked");
+        sleep(3000);
         waitForElementToAppear(latestPostCaptions);
         WebElement captionElement = latestPostCaptions;
         return captionElement.getText().equals(expectedCaption);

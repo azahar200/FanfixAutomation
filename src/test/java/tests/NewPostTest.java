@@ -34,9 +34,9 @@ public class NewPostTest {
         String path = "C:\\Users\\Azahar\\Documents\\Eclipse\\FanfixAutomation\\src\\test\\resources\\fanfix.png";
         newPostPage.createNewPost(caption, path);
 
-        // Check if the Post button is disabled for prices less than $5
-        for (int subPrice = 4; subPrice <= 6; subPrice++) {
-            for (int nonSubPrice = 4; nonSubPrice <= 6; nonSubPrice++) {
+        // Check if the Post button is disabled for prices less than $5 (Also doing boundary value analysis)
+        for (int subPrice = 1; subPrice <= 6; subPrice++) {
+            for (int nonSubPrice = 1; nonSubPrice <= 6; nonSubPrice++) {
                 newPostPage.setCustomPrices(subPrice, nonSubPrice);
                 if (subPrice < 5 || nonSubPrice < 5) {
                     Assert.assertFalse(newPostPage.isPostButtonEnabled(), "Post button should be disabled for prices less than $5");
